@@ -1,0 +1,4 @@
+src/Config/Local.php
+vendor/*
+.idea
+.phpunit.result.cache

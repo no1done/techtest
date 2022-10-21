@@ -1,0 +1,12 @@
+<?php
+
+namespace Application\Config;
+
+/**
+ * This class is ignored from version control as it contains
+ * sensitive information.
+ */
+class Local {
+    public static string $aff_id = "";
+    public static string $aff_password = "";
+}
