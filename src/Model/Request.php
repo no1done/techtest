@@ -2,6 +2,33 @@
 
 namespace Application\Model;
 
+/**
+ * Request Model
+ *
+ * I initially set this up as a way to use the new property
+ * promotion feature of PHP 8, however the size of the
+ * request has led me to be a little disappointed
+ * with how messy this has turned out.
+ *
+ * Considering changing this to the more dynamic request
+ * setup I originally considered.
+ *
+ * The choice to set up each field as a model was to allow
+ * in depth validation and testing of each field and
+ * their respective requirements.
+ *
+ * Tests for the models can be found in ./test/Model.
+ *
+ * I wrote a quick script when starting the project which
+ * would loop through each field and create a base boilerplate
+ * file for the field and a matching unit test. Each file expected
+ * just a string with no validation, and all tests immediately passed.
+ *
+ * My process was then to modify each model to the specific field
+ * type and add in the validations.
+ *
+ * @class Application\Model\Request
+ */
 class Request {
 
     public function __construct(

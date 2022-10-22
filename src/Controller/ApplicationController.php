@@ -26,6 +26,13 @@ use Exception;
 class ApplicationController {
 
     /**
+     * Process the request
+     *
+     * If I was creating a larger system around this tech test then I
+     * would also naturally be running a database alongside to store
+     * each request and response object, and then have those reportable
+     * in a datatable.
+     *
      * @param array $data
      * @param array $server
      * @return Response
@@ -36,11 +43,13 @@ class ApplicationController {
             // Set request Form Data.
             $request = $this->buildRequestObject($data, $server);
 
-            // Submit to API
+            // Submit to API.
             $json = $request->getJsonObject();
 
+            // Catch the response json string.
             $responseObj = $this->curlRequest($json);
 
+            // Create a new Response model to decode and hold the response.
             return new Response($responseObj);
 
         } catch (Exception $e) {
@@ -50,6 +59,11 @@ class ApplicationController {
     }
 
     /**
+     * Basic curl request
+     *
+     * With the API credentials being a part of the request body, using
+     * a basic CURL request for submitting the POST call seemed the best option.
+     *
      * @param string $json
      * @return bool|string
      */
@@ -83,6 +97,16 @@ class ApplicationController {
     }
 
     /**
+     * This method is obviously way too bloated. Originally I was going to loop
+     * through an array of each field item and have it set dynamically,
+     * however, I figured this would be a good appraoch to showing my use of
+     * the Enums for the fixed options.
+     *
+     * If I was required to re-write this to be cleaner *without* using a
+     * dynamic loop to set each field, then I would split it in to cleaner
+     * methods for building the request, such as "buildAddress" which
+     * only handles the setting of the address items etc.
+     *
      * @param array $data
      * @param array $server
      * @return Request
